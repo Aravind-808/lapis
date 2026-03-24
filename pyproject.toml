@@ -1,0 +1,9 @@
+[project]
+name = "lapis"
+version = "0.1.0"
+ 
+[project.scripts]
+lapis = "main:main"
+ 
+[tool.setuptools]
+py-modules = ["main", "conversational", "single_task", "config", "parser", "tools", "utils", "agent"]
