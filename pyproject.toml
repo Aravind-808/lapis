@@ -6,4 +6,4 @@ version = "0.1.0"
 lapis = "main:main"
  
 [tool.setuptools]
-py-modules = ["main", "conversational", "single_task", "config", "parser", "tools", "utils", "agent"]
+py-modules = ["main", "conversational", "single_task", "toolconfig", "parser", "basictools", "apptools", "utils", "agent", "constants"]

@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import threading
  
-from config import APP_ALIASES, BASE_DIR, NOTES_DIR, SEARCH_DIRS
+from constants import APP_ALIASES, BASE_DIR, NOTES_DIR, SEARCH_DIRS
 
 def write_file(filename, content, subfolder= ""):
     """Write text content to a file in the agent folder.
@@ -12,16 +12,27 @@ def write_file(filename, content, subfolder= ""):
     Args:
         filename: Just the filename e.g. hello.py — do NOT include any path
         content: The full text content to write into the file
-        subfolder: Optional subfolder inside agent folder e.g. projects — leave empty for notes
+        subfolder: Optional subfolder inside agent folder e.g. projects.
+                   Leave empty to overwrite the file in its current location,
+                   or save to notes if it's a new file.
 
     Returns:
         A message confirming the file was written with its full path
     """
     filename = os.path.basename(filename)
-    base = os.path.join(r"D:\agent_folder", subfolder) if subfolder else NOTES_DIR
+    
+    # if no subfolder given, check if file already exists somewhere — write there
+    if not subfolder:
+        existing = find_file(filename)
+        if existing:
+            base = os.path.dirname(existing)
+        else:
+            base = NOTES_DIR  # 
+    else:
+        base = os.path.join(BASE_DIR, subfolder)
+
     os.makedirs(base, exist_ok=True)
     full_path = os.path.join(base, filename)
-
     content = content.replace("\\n", "\n").replace("\\t", "\t")
     with open(full_path, "w", encoding="utf-8") as f:
         f.write(content)

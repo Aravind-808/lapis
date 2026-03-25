@@ -1,5 +1,5 @@
-from config import DANGEROUS_KEYWORDS
-from tools import TOOLS
+from constants import DANGEROUS_KEYWORDS
+from toolconfig import TOOLS
 
 def is_risky(args):
     return any(kw in str(args).lower() for kw in DANGEROUS_KEYWORDS)

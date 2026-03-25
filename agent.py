@@ -1,7 +1,7 @@
 import ollama
-from config import MODEL, SYSPROMPT, DANGEROUS_KEYWORDS
+from constants import MODEL, SYSPROMPT, DANGEROUS_KEYWORDS
 from parser import extract_tool_calls
-from tools import TOOLS
+from toolconfig import TOOLS
 from utils import deploy_tool
 
 CTX_LIMIT = 7500
