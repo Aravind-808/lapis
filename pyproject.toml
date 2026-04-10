@@ -1,9 +1,12 @@
 [project]
 name = "lapis"
 version = "0.1.0"
- 
+
 [project.scripts]
 lapis = "main:main"
- 
+
 [tool.setuptools]
-py-modules = ["main", "conversational", "single_task", "toolconfig", "parser", "basictools", "apptools", "utils", "agent", "constants"]
+py-modules = ["main", "conversational", "single_task", "parser", "basictools", "apptools", "utils", "agent"]
+
+[tool.setuptools.packages.find]
+where = ["."]

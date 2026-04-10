@@ -1,5 +1,5 @@
-from constants import DANGEROUS_KEYWORDS
-from toolconfig import TOOLS
+from config import DANGEROUS_KEYWORDS
+from config import TOOLS
 from ollama import web_fetch, web_search
 
 BUILTIN_TOOLS = {

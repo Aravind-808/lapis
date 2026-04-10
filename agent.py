@@ -1,15 +1,19 @@
 import os
-from constants import OLLAMA_API_KEY
+from config import OLLAMA_API_KEY
 os.environ["OLLAMA_API_KEY"] = OLLAMA_API_KEY
 
 import ollama
 from ollama import web_fetch, web_search
-from constants import MODEL, SYSPROMPT, DANGEROUS_KEYWORDS
+from config import MODEL, SYSPROMPT, DANGEROUS_KEYWORDS
 from parser import extract_tool_calls
-from toolconfig import TOOLS
+from config import TOOLS
 from utils import deploy_tool
 
-CTX_LIMIT = 7500
+from rich.console import Console
+from rich.markdown import Markdown
+
+console = Console()
+CTX_LIMIT = 15000
 def run_agent(task: str):
 
     messages = [
@@ -81,7 +85,8 @@ def run_agent(task: str):
                     })
 
                 continue 
-            print(f"Done: {msg.content}")
+            # print(f"Done: {msg.content}")
+            console.print(Markdown(msg.content))
             break
 
     # unload model from VRAM when done
@@ -125,8 +130,8 @@ def run_agent_multiturn() -> None:
             response = ollama.chat(
                 model=MODEL,
                 messages=messages,
-                tools=list(TOOLS.values()),
-                options={"num_predict": 2048, "think": False, "num_ctx": 8192},
+                tools=list(TOOLS.values()) + [web_search, web_fetch] ,
+                options={"num_predict": 2048, "think": False, "num_ctx": 15000},
                 keep_alive="10m",
             )
 
@@ -156,7 +161,9 @@ def run_agent_multiturn() -> None:
                     messages.append({"role": "tool", "content": result})
                 continue
 
-            print(f"agent: {msg.content}\n")
+            # print(f"agent: {msg.content}\n")
+            console.print(Markdown(msg.content))
+            print()
             break
 
     ollama.chat(model=MODEL, messages=[], keep_alive=0)

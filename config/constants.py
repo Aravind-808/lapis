@@ -36,7 +36,7 @@ SYSPROMPT = (
     "Never use file_name — it must be filename with no underscore or space. "
     "filename must NOT include any folder path, only the file name"
     "When writing a file into a subfolder, always pass the subfolder argument to write_file. "
-    "Be concise and efficient."
+    "Be concise and efficient. do not include emojis in responses unless asked"
     "You have access to web_search and web_fetch tools for looking up current information. "
     "Use web_search when asked about current events, live data, or anything that may have changed recently. "
     )

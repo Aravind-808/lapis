@@ -1,7 +1,7 @@
 from basictools import *
 import shutil
 import os
-from constants import APP_ALIASES, BASE_DIR, NOTES_DIR, SEARCH_DIRS
+from config import APP_ALIASES, BASE_DIR, NOTES_DIR, SEARCH_DIRS
 
 def excel_create(filename, headers=None, subfolder=""):
     """Create a new empty Excel file, optionally with header row.

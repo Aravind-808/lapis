@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import threading
  
-from constants import APP_ALIASES, BASE_DIR, NOTES_DIR, SEARCH_DIRS
+from config import APP_ALIASES, BASE_DIR, NOTES_DIR, SEARCH_DIRS
 
 def write_file(filename, content, subfolder= ""):
     """Write text content to a file in the agent folder.
