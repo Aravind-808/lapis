@@ -1,6 +1,12 @@
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 MODEL = "qwen3:4b-instruct"
 BASE_DIR = r"D:\agent_folder"
 NOTES_DIR = r"D:\agent_folder\notes"
+OLLAMA_API_KEY = os.getenv("OLLAMA_API")
 
 SEARCH_DIRS =  [
          r"C:\Program Files",
@@ -31,6 +37,8 @@ SYSPROMPT = (
     "filename must NOT include any folder path, only the file name"
     "When writing a file into a subfolder, always pass the subfolder argument to write_file. "
     "Be concise and efficient."
+    "You have access to web_search and web_fetch tools for looking up current information. "
+    "Use web_search when asked about current events, live data, or anything that may have changed recently. "
     )
 
 APP_ALIASES = {

@@ -1,4 +1,9 @@
+import os
+from constants import OLLAMA_API_KEY
+os.environ["OLLAMA_API_KEY"] = OLLAMA_API_KEY
+
 import ollama
+from ollama import web_fetch, web_search
 from constants import MODEL, SYSPROMPT, DANGEROUS_KEYWORDS
 from parser import extract_tool_calls
 from toolconfig import TOOLS
@@ -16,7 +21,7 @@ def run_agent(task: str):
         response = ollama.chat(
             model=MODEL,
             messages=messages,
-            tools=list(TOOLS.values()),
+            tools=list(TOOLS.values()) + [web_search, web_fetch],
             options={"num_predict": 2048, "think":False, "num_ctx": 4096},
             keep_alive="2m",  # unload after 2 mins of inactivity
         )
@@ -45,8 +50,8 @@ def run_agent(task: str):
                         messages.append({"role": "tool", "content": "User denied this action."})
                         continue
 
-                result = TOOLS[name](**args)
-                print(f"{result}\n")
+                result = deploy_tool(name, args)
+                # print(f"{result}\n")
                 messages.append({"role": "tool", "content": result})
 
         else:
@@ -67,8 +72,8 @@ def run_agent(task: str):
                             messages.append({"role": "tool", "content": "User denied this action."})
                             continue
 
-                    result = TOOLS[name](**args)
-                    print(f"{result}\n")
+                    result = deploy_tool(name, args)
+                    # print(f"{result}\n")
 
                     messages.append({
                         "role": "tool",
