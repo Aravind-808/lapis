@@ -5,9 +5,9 @@ os.environ["OLLAMA_API_KEY"] = OLLAMA_API_KEY
 import ollama
 from ollama import web_fetch, web_search
 from config import MODEL, SYSPROMPT, DANGEROUS_KEYWORDS
-from parser import extract_tool_calls
+# from utilities import extract_tool_calls
 from config import TOOLS
-from utils import deploy_tool
+from utilities import deploy_tool, extract_tool_calls
 
 from rich.console import Console
 from rich.markdown import Markdown

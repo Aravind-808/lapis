@@ -1,5 +1,5 @@
 import sys
-from single_task import run_with_spinner
+from modes import run_with_spinner
 from agent import run_agent_multiturn
 
 
