@@ -6,7 +6,7 @@ version = "0.1.0"
 lapis = "main:main"
 
 [tool.setuptools]
-py-modules = ["main", "conversational", "single_task", "parser", "basictools", "apptools", "utils", "agent"]
+py-modules = ["main", "conversational", "single_task", "parser", "utils", "agent"]
 
 [tool.setuptools.packages.find]
 where = ["."]

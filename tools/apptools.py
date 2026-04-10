@@ -1,4 +1,4 @@
-from basictools import *
+from tools.basictools import *
 import shutil
 import os
 from config import APP_ALIASES, BASE_DIR, NOTES_DIR, SEARCH_DIRS
