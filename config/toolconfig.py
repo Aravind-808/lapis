@@ -13,6 +13,7 @@ TOOLS = {
     "find_file_tool": find_file_tool,
     "list_folder_tree": list_folder_tree,
     "excel_read": excel_read,
+    "excel_create": excel_create,
     "excel_write_cell": excel_write_cell,
     "excel_add_row": excel_add_row,
     "word_create": word_create,

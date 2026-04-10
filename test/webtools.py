@@ -10,7 +10,7 @@ OLLAMA_API_KEY = os.getenv("OLLAMA_API")
 os.environ["OLLAMA_API_KEY"] = OLLAMA_API_KEY
 
 from ollama import chat, web_search, web_fetch
-from constants import MODEL
+from config.constants import MODEL
 
 MODEL = MODEL
 available_tools = {"web_search": web_search, "web_fetch": web_fetch}
