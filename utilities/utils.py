@@ -18,13 +18,15 @@ def confirm_risky(name, args):
 
 def deploy_tool(name, args):
     if name in BUILTIN_TOOLS:
-        result = BUILTIN_TOOLS[name](**args)
-        return str(result)[:3000]  # same limit as your test script
+        try:
+            result = BUILTIN_TOOLS[name](**args)
+            return str(result)[:3000]
+        except Exception as e:
+            return f"Error using {name}: {str(e)}"
     if name not in TOOLS:
         return f"Error: unknown tool '{name}'"
     if is_risky(args):
         if not confirm_risky(name, args):
             return "User denied this action."
     result = TOOLS[name](**args)
-    print(f"→ {result}\n")
     return result
